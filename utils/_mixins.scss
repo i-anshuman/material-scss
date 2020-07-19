@@ -1,0 +1,74 @@
+@mixin fluid-text ($min-vw, $max-vw, $min-font-size, $max-font-size) {
+  $u1: unit($min-vw);
+  $u2: unit($max-vw);
+  $u3: unit($min-font-size);
+  $u4: unit($max-font-size);
+
+  @if $u1 == $u2 and $u1 == $u3 and $u1 == $u4 {
+    & {
+      font-size: $min-font-size;
+      @media screen and (min-width: $min-vw) {
+        font-size: calc(#{$min-font-size} + #{strip-unit($max-font-size - $min-font-size)} * ((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)}));
+      }
+      @media screen and (min-width: $max-vw) {
+        font-size: $max-font-size;
+      }
+    }
+  }
+}
+
+@mixin box-property ($property, $values: ()) {
+  @if type-of($values) == map {
+    @each $side, $value in $values {
+      #{$property}-#{$side}: #{$value};
+    }
+  }
+  @else {
+    $val: '';
+    @each $value in $values {
+      $val: $val + " " + $value;
+    }
+    #{$property}: #{$val};
+  }
+}
+
+@mixin prefix ($properties: (), $prefixes: (webkit, moz), $prefix-to-value: false) {
+  @each $key, $value in $properties {
+    @each $prefix in $prefixes {
+      @if $prefix-to-value == true {
+        #{$key}: #{'-' + $prefix + '-' + $value};
+      }
+      @else {
+        #{'-' + $prefix + '-' + $key}: #{$value};
+      }
+    }
+    #{$property}: #{$value};
+  }
+}
+
+@mixin flexbox ($display: flex, $wrap: wrap, $direction: row, $justify-content: flex-start, $align-content: flex-start, $justify-items: flex-start, $align-items: flex-start ) {
+          display: $display;
+        flex-wrap: $wrap;
+   flex-direction: $direction;
+      align-items: $align-items;
+    align-content: $align-content;
+    justify-items: $justify-items;
+  justify-content: $justify-content;
+}
+
+@mixin flexitem ($order: 0, $grow: 0, $shrink: 1, $basis: auto, $justify-self: flex-start, $align-self: flex-start) {
+         order: $order;
+     flex-grow: $grow;
+   flex-shrink: $shrink;
+    flex-basis: $basis;
+    align-self: $align-self;
+  justify-self: $justify-self;
+}
+
+@mixin margin ($sides: ()) {
+  @include box-property(margin, $sides);
+}
+
+@mixin padding ($sides: ()) {
+  @include box-property(padding, $sides);
+}
