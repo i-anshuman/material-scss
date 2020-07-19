@@ -1,0 +1,18 @@
+$breakpoints: (
+  mobile-s: 320px,
+  mobile-m: 375px,
+  mobile-l: 425px,
+    tablet: 768px,
+  laptop-s: 1024px,
+  laptop-l: 1440px,
+        4K: 2560px
+) !default;
+
+$viewports: (
+  min: 320px,
+  max: 2560px
+) !default;
+
+$font-sizes: (
+  root: 16px
+) !default;
