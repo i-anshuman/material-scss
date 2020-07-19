@@ -1,0 +1,23 @@
+{
+  "name": "material-scss",
+  "version": "1.0.0",
+  "description": "Write less, do more SCSS library.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/i-anshuman/sass.git"
+  },
+  "keywords": [
+    "SASS",
+    "SCSS"
+  ],
+  "author": "Anshuman",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/i-anshuman/sass/issues"
+  },
+  "homepage": "https://github.com/i-anshuman/sass#readme"
+}
